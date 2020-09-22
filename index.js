@@ -1,4 +1,4 @@
-
+$(document).ready(function(){
 // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDUWLRqAVRpW-7rB_xAVcCZpPriy-pcxRE",
@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(user => {
     alert(`${user.displayName || user.email}`);
   }
 });
-$(document).ready(function(){
+
   $("#loginemail").click(()=>{
     firebase.auth().signInWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
       var errorCode = error.code;
