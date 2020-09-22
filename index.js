@@ -21,27 +21,29 @@ firebase.auth().onAuthStateChanged(user => {
     alert(`${user.displayName || user.email}`);
   }
 });
-
-$("#loginemail").click(()=>{
-  firebase.auth().signInWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    alert(errorMessage);
-  });
-});
-$("#register").click(()=>{
-  let pwd1 = $("#password").val();
-  let pwd2 = $("#password2").val();
-  if (pwd1 == pwd2){
-    firebase.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
+$(document).ready(function(){
+  $("#loginemail").click(()=>{
+    firebase.auth().signInWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
       alert(errorMessage);
     });
-  } else {
-    alert("passwords don't match");
-  }
-});
-$("#reset").click(()=>{
-  firebase.auth().sendPasswordResetEmail($("#email").val());
+  });
+  $("#register").click(()=>{
+    let pwd1 = $("#password").val();
+    let pwd2 = $("#password2").val();
+    if (pwd1 == pwd2){
+      firebase.auth().createUserWithEmailAndPassword($("#email").val(), $("#password").val()).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorMessage);
+      });
+    } else {
+      alert("passwords don't match");
+    }
+  });
+  $("#reset").click(()=>{
+    firebase.auth().sendPasswordResetEmail($("#email").val());
+  });
+  
 });
